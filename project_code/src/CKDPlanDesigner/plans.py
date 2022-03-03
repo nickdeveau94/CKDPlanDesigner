@@ -37,6 +37,7 @@ class Careplan(object):
     
 class DelayPlan(Careplan):
     def __init__(self, patient_config):
+        print('instantiating delay plan')
         super().__init__(patient_config)
 
         self.name = 'Delay'
