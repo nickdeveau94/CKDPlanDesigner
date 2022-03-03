@@ -1,5 +1,5 @@
 # format
-# [inervention key]: utilization reduction factor
+# [inervention key]: [utilization reduction factor]
 
 savings:
   t2d: 0.65
