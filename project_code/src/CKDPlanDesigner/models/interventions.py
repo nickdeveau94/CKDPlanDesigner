@@ -3,7 +3,7 @@ import pathlib
 import os
 
 yaml_path = os.path.join(pathlib.Path(__file__).parent.absolute(),
-                         'configs/ix_config.yaml')
+                         '../configs/ix_config.yaml')
 
 ix_config_yaml = open(yaml_path)
 ix_config = yaml.load(ix_config_yaml, Loader=yaml.FullLoader)
