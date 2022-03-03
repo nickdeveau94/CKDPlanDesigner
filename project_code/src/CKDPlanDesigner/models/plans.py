@@ -1,4 +1,4 @@
-from CKDPlanDesigner import interventions as ix
+from CKDPlanDesigner.models import interventions as ix
 
 
 #### CAREPLANS ####
