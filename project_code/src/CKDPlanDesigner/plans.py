@@ -24,12 +24,17 @@ class Careplan(object):
                               self.demo_components +  \
                               self.behavior_components
         
-    def list_components(self):
+    def list_components(self, show_savings=True):
         self.consolidate_components()
-        return [comp for comp in self.all_components]
-        
+
+        if show_savings:
+            return [(comp.desc, 'Savings: {}'.format(comp.est_savings))
+                    for comp in self.all_components]
+        else:
+            return [comp.desc for comp in self.all_components]
+
     def get_savings(self):
-        for comp in self.components:
+        for comp in self.all_components:
             self.savings *= comp.est_savings
         return self.savings
     
