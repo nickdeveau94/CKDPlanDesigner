@@ -1,4 +1,4 @@
-from CKDPlanDesigner import stages, plans
+from CKDPlanDesigner.models import stages, plans
 
 class Patient(object):
     def __init__(self, **patient_config):

@@ -1,9 +1,5 @@
 setup.py
 src/CKDPlanDesigner/__init__.py
-src/CKDPlanDesigner/patients.py
-src/CKDPlanDesigner/plans.py
-src/CKDPlanDesigner/risk_factors.py
-src/CKDPlanDesigner/stages.py
 src/CKDPlanDesigner.egg-info/PKG-INFO
 src/CKDPlanDesigner.egg-info/SOURCES.txt
 src/CKDPlanDesigner.egg-info/dependency_links.txt
