@@ -27,11 +27,13 @@ class Careplan(object):
     def list_components(self, show_savings=True):
         self.consolidate_components()
 
+        print('Plan Components')
         if show_savings:
-            return [(comp.desc, 'Savings: {}'.format(comp.est_savings))
+            return [(comp.desc, 'Cost Reduction: {}'.format(comp.est_savings))
                     for comp in self.all_components]
         else:
             return [comp.desc for comp in self.all_components]
+
 
     def get_savings(self):
         for comp in self.all_components:
@@ -40,10 +42,9 @@ class Careplan(object):
     
 class DelayPlan(Careplan):
     def __init__(self, patient_config):
-        print('instantiating delay plan')
         super().__init__(patient_config=patient_config)
 
-        self.name = 'Delay'
+        self.plan_name = 'Plan: Delay'
 
         if self.patient_config.get('hypertension'):
             self.physio_components.append(ix.Hypertension())
@@ -71,10 +72,10 @@ class PrepTransitionPlan(Careplan):
                                         ix.NutritionSupplementation()])
         
         
-        self.name = 'PrepTransition'
+        self.plan_name = 'Plan: Prep Transition'
         
 class ESRDPlan(Careplan):
     def __init__(self):
         super().__init__()
         self.components = [None]
-        self.name = 'EndOfLife'
+        self.plan_name = 'ESRD Plan'
