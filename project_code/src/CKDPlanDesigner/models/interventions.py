@@ -16,6 +16,7 @@ class Intervention(object):
                  freq='weekly'):
         self.est_savings = est_savings
         self.freq = freq
+        self.desc_long = None
 
 
 class DepressionTreatment(Intervention):
@@ -109,13 +110,19 @@ class MTM(Intervention):
         super().__init__(est_savings)
         self.desc = 'MTM'
 
+class ComfortAndPain(MTM):
+    def __init__(self,
+                 est_savings: float=ix_config['savings'].get('esa', 1)):
+        super().__init__(est_savings)
+        self.desc = 'ComfortAndPain'
+        self.desc_long = ix_config['desc_long'].get('palliative')
 
 class Hypertension(MTM):
     def __init__(self,
                  est_savings: float=ix_config['savings'].get('ht', 1)):
         super().__init__(est_savings)
         self.desc = 'Hypertension Management'
-        self.desc_long = ix_config['long_desc'].get('ht')
+        self.desc_long = ix_config['desc_long'].get('ht')
 
 class CaSupp(MTM):
     def __init__(self,

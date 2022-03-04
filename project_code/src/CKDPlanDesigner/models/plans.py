@@ -96,3 +96,5 @@ class PalliativeCarePlan(CareManagementPlan):
     def __init__(self, patient_config):
         super().__init__(patient_config)
         self.plan_name = 'Plan: Palliative Care'
+
+        self.physio_components.append(ix.ComfortAndPain())
