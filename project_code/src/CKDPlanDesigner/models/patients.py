@@ -24,7 +24,7 @@ class Patient(object):
         self.low_SES = False
 
     def assign_stage(self):
-        if self.eGFR < 15:
+        if self.eGFR <= 15:
             self.stage = stages.Stage5(self.patient_config)
         elif self.eGFR <= 29:
             self.stage = stages.Stage4(self.patient_config)
@@ -34,13 +34,12 @@ class Patient(object):
             self.stage = stages.Stage3A(self.patient_config)
         elif self.eGFR <= 89:
             self.stage = stages.Stage2(self.patient_config)
-        # TODO: add stage 1
-        else:
-            self.stage = stages.Stage2(self.patient_config)
+        elif self.eGFR >= 90:
+            self.stage = stages.Stage1(self.patient_config)
         
     def generate_careplan(self):
         if self.stage.stage_num <= 3:
-            self.careplan = plans.DelayPlan(self.patient_config)
+            self.careplan = plans.EarlyDelayPlan(self.patient_config)
         elif self.stage.stage_num <= 4:
             self.careplan = plans.PrepTransitionPlan(self.patient_config)
         elif self.stage.stage_num <= 5:

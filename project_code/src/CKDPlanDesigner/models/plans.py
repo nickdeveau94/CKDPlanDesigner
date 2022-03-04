@@ -2,7 +2,7 @@ from CKDPlanDesigner.models import interventions as ix
 
 
 #### CAREPLANS ####
-class Careplan(object):
+class CareManagementPlan(object):
     def __init__(self, patient_config: dict):
 
     # def __init__(self, patient_config: dict):
@@ -40,7 +40,7 @@ class Careplan(object):
             self.savings *= comp.est_savings
         return self.savings
     
-class DelayPlan(Careplan):
+class EarlyDelayPlan(CareManagementPlan):
     def __init__(self, patient_config):
         super().__init__(patient_config=patient_config)
 
@@ -64,7 +64,7 @@ class DelayPlan(Careplan):
                               self.behavior_components
 
 
-class PrepTransitionPlan(Careplan):
+class TransitionPlan(CareManagementPlan):
     def __init__(self):
         super().__init__(patient_config,
                     physio_components=[ix.Hypertension(), ix.Type2D()],
@@ -74,7 +74,7 @@ class PrepTransitionPlan(Careplan):
         
         self.plan_name = 'Plan: Prep Transition'
         
-class ESRDPlan(Careplan):
+class SmartDialysisPlan(CareManagementPlan):
     def __init__(self):
         super().__init__()
         self.components = [None]
