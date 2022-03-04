@@ -1,7 +1,15 @@
 
 import pandas as pd
 import os
+import datetime
 
+
+def get_age(date_str):
+    try:
+        delta = datetime.datetime.now() - datetime.datetime.strptime(str(date_str), '%Y-%M-%d')
+        return delta.days // 365
+    except:
+        return 55 # average age
 
 def preprocess_synthea_data(synthea_path: str):
     """
@@ -61,6 +69,7 @@ def preprocess_synthea_data(synthea_path: str):
     gfr_df = pd.pivot(kidney_obs, index='PATIENT',
                       columns='DESCRIPTION', values='VALUE').reset_index()
     px_df = patients_df.merge(gfr_df, left_on='Id', right_on='PATIENT')
+    px_df = px_df[px_df.DEATHDATE.isna()]
 
     sel_cols = ['Id',
                 'BIRTHDATE',
@@ -122,6 +131,7 @@ def preprocess_synthea_data(synthea_path: str):
                         'gender',
                         'zip',
                         'eGFR']
+    final_df['age'] = final_df['dob'].apply(get_age)
     final_df['t2d'] = final_df['t2d'].astype(bool)
     final_df['depression'] = final_df['depression'].astype(bool)
     final_df['bmi'] = final_df['bmi'].astype(bool)
