@@ -75,6 +75,14 @@ class EducationEngagement(Intervention):
         self.desc = 'Education and Engagement'
         self.desc_long = desc_long
 
+class NephroEngagement(Intervention):
+    def __init__(self,
+                 est_savings: float=ix_config['savings'].get('nephro_engage', 1),
+                 desc_long=None):
+        super().__init__(est_savings)
+        self.desc = 'Nephro Engagement'
+        self.desc_long = desc_long
+
 class AdditionalTimeHealthEquity(Intervention):
     def __init__(self,
                  est_savings: float=ix_config['savings'].get('equity_time', 1)):

@@ -64,7 +64,7 @@ class EarlyDelayPlan(CareManagementPlan):
         if self.patient_config.get('bmi'):
             self.behavior_components.append(ix.DietaryProgram())
 
-            educate_content = ix_config['long_desc']['educate_engage']['delay_plan']
+            educate_content = ix_config['desc_long']['educate_engage']['delay_plan']
             self.behavior_components.append(ix.EducationEngagement(desc_long=educate_content))
 
         self.consolidate_components()
@@ -85,8 +85,10 @@ class PrepTransitionPlan(CareManagementPlan):
             self.physio_components.append(ix.Peritoneal())
             self.physio_components.append(ix.Hemodialysis())
         
-        educate_content = ix_config['long_desc']['educate_engage']['transition_plan']
+        educate_content = ix_config['desc_long']['educate_engage']['transition_plan']
         self.behavior_components.append(ix.EducationEngagement(desc_long=educate_content))
+        nephro_content = ix_config['desc_long']['nephro_engage']['transition_plan']
+        self.behavior_components.append(ix.NephroEngagement(desc_long=nephro_content))
         
 class SmartDialysisPlan(CareManagementPlan):
     def __init__(self, patient_config):

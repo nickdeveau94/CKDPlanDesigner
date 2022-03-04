@@ -6,9 +6,11 @@ savings:
   ht: .5
   depression: .8
 
-long_desc:
+desc_long:
   ht: 'Follow kidney foundaion guidelines for aggressive treatment'
   t2d: 'Follow kidney foundaion guidelines for aggressive treatment'
   educate_engage: 
     delay_plan: 'Discuss diet and exercise. Also emphasize that we can halt progress of CKD at this stage.'
     transition_plan: 'Talk to patient about at-home PD or HD'
+  nephro_engage:
+    transition_plan: 'Goal is to Goal is to get graft or fistula + home dialysis'
