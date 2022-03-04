@@ -9,3 +9,6 @@ savings:
 long_desc:
   ht: 'Follow kidney foundaion guidelines for aggressive treatment'
   t2d: 'Follow kidney foundaion guidelines for aggressive treatment'
+  educate_engage: 
+    delay_plan: 'Discuss diet and exercise. Also emphasize that we can halt progress of CKD at this stage.'
+    transition_plan: 'Talk to patient about at-home PD or HD'

@@ -3,7 +3,6 @@ import pathlib
 import os
 
 
-
 yaml_path = os.path.join(pathlib.Path(__file__).parent.absolute(),
                          '../configs/ix_config.yaml')
 
@@ -70,9 +69,11 @@ class NutritionSupplementation(DietaryProgram):
 ##### Education & Engagement ######  
 class EducationEngagement(Intervention):
     def __init__(self,
-                 est_savings: float=ix_config['savings'].get('educate_engage', 1)):
+                 est_savings: float=ix_config['savings'].get('educate_engage', 1),
+                 desc_long=None):
         super().__init__(est_savings)
         self.desc = 'Education and Engagement'
+        self.desc_long = desc_long
 
 class AdditionalTimeHealthEquity(Intervention):
     def __init__(self,
