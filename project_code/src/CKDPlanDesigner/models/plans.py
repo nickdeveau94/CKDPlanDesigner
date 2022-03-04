@@ -65,17 +65,12 @@ class EarlyDelayPlan(CareManagementPlan):
 
 
 class TransitionPlan(CareManagementPlan):
-    def __init__(self):
-        super().__init__(patient_config,
-                    physio_components=[ix.Hypertension(), ix.Type2D()],
-                    behavior_components=[ix.DDiet(), 
-                                        ix.NutritionSupplementation()])
-        
+    def __init__(self, patient_config):
+        super().__init__(patient_config)
         
         self.plan_name = 'Plan: Prep Transition'
         
 class SmartDialysisPlan(CareManagementPlan):
-    def __init__(self):
-        super().__init__()
-        self.components = [None]
-        self.plan_name = 'ESRD Plan'
+    def __init__(self, patient_config):
+        super().__init__(patient_config)
+        self.plan_name = 'Plan: Smart Dialysis'

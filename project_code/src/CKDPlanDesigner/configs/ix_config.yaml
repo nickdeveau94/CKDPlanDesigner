@@ -5,3 +5,7 @@ savings:
   t2d: 0.65
   ht: .5
   depression: .8
+
+long_desc:
+  ht: 'Follow kidney foundaion guidelines for aggressive treatment'
+  t2d: 'Follow kidney foundaion guidelines for aggressive treatment'

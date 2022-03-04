@@ -2,6 +2,8 @@ import yaml
 import pathlib
 import os
 
+
+
 yaml_path = os.path.join(pathlib.Path(__file__).parent.absolute(),
                          '../configs/ix_config.yaml')
 
@@ -98,11 +100,13 @@ class MTM(Intervention):
         super().__init__(est_savings)
         self.desc = 'MTM'
 
+
 class Hypertension(MTM):
     def __init__(self,
                  est_savings: float=ix_config['savings'].get('ht', 1)):
         super().__init__(est_savings)
         self.desc = 'Hypertension Management'
+        self.desc_long = ix_config['long_desc'].get('ht')
 
 class CaSupp(MTM):
     def __init__(self,
@@ -127,6 +131,7 @@ class Type2D(MTM):
                  est_savings: float=ix_config['savings'].get('t2d', 1)):
         super().__init__(est_savings)
         self.desc = 'T2D Management'
+        self.desc_long = ix_config['long_desc'].get('t2d')
 
 ##### Vascular Access
 class VascularAccess(Intervention):

@@ -40,10 +40,10 @@ class Patient(object):
     def generate_careplan(self):
         if self.stage.stage_num <= 3:
             self.careplan = plans.EarlyDelayPlan(self.patient_config)
-        elif self.stage.stage_num <= 4:
+        elif self.stage.stage_num <= 4: # 3.5 = 3b
             self.careplan = plans.PrepTransitionPlan(self.patient_config)
-        elif self.stage.stage_num <= 5:
-            self.careplan = plans.ESRDPlan(self.patient_config)
+        elif self.stage.stage_num == 5:
+            self.careplan = plans.SmartDialysisPlan(self.patient_config)
             
     def describe_plan_components(self):
         return [comp.desc for comp in self.careplan.components]   
