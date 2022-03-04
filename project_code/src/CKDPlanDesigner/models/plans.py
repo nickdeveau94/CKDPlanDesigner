@@ -1,8 +1,16 @@
+import yaml
+import pathlib
+import os
+
 from CKDPlanDesigner.models import interventions as ix
 
+yaml_path = os.path.join(pathlib.Path(__file__).parent.absolute(),
+                         '../configs/ix_config.yaml')
+ix_config_yaml = open(yaml_path)
+ix_config = yaml.load(ix_config_yaml, Loader=yaml.FullLoader)
 
 #### CAREPLANS ####
-class Careplan(object):
+class CareManagementPlan(object):
     def __init__(self, patient_config: dict):
 
     # def __init__(self, patient_config: dict):
@@ -40,7 +48,7 @@ class Careplan(object):
             self.savings *= comp.est_savings
         return self.savings
     
-class DelayPlan(Careplan):
+class EarlyDelayPlan(CareManagementPlan):
     def __init__(self, patient_config):
         super().__init__(patient_config=patient_config)
 
@@ -56,6 +64,9 @@ class DelayPlan(Careplan):
         if self.patient_config.get('bmi'):
             self.behavior_components.append(ix.DietaryProgram())
 
+            educate_content = ix_config['desc_long']['educate_engage']['delay_plan']
+            self.behavior_components.append(ix.EducationEngagement(desc_long=educate_content))
+
         self.consolidate_components()
 
     def consolidate_components(self):
@@ -64,18 +75,22 @@ class DelayPlan(Careplan):
                               self.behavior_components
 
 
-class PrepTransitionPlan(Careplan):
-    def __init__(self):
-        super().__init__(patient_config,
-                    physio_components=[ix.Hypertension(), ix.Type2D()],
-                    behavior_components=[ix.DDiet(), 
-                                        ix.NutritionSupplementation()])
-        
+class PrepTransitionPlan(CareManagementPlan):
+    def __init__(self, patient_config):
+        super().__init__(patient_config)
         
         self.plan_name = 'Plan: Prep Transition'
+        if self.patient_config.get('eGFR') <= 20 :
+            self.physio_components.append(ix.VascularAccess())
+            self.physio_components.append(ix.Peritoneal())
+            self.physio_components.append(ix.Hemodialysis())
         
-class ESRDPlan(Careplan):
-    def __init__(self):
-        super().__init__()
-        self.components = [None]
-        self.plan_name = 'ESRD Plan'
+        educate_content = ix_config['desc_long']['educate_engage']['transition_plan']
+        self.behavior_components.append(ix.EducationEngagement(desc_long=educate_content))
+        nephro_content = ix_config['desc_long']['nephro_engage']['transition_plan']
+        self.behavior_components.append(ix.NephroEngagement(desc_long=nephro_content))
+        
+class SmartDialysisPlan(CareManagementPlan):
+    def __init__(self, patient_config):
+        super().__init__(patient_config)
+        self.plan_name = 'Plan: Smart Dialysis'
