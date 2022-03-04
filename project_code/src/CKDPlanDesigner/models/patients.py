@@ -42,7 +42,11 @@ class Patient(object):
             self.careplan = plans.EarlyDelayPlan(self.patient_config)
         elif self.stage.stage_num <= 4: # 3.5 = 3b
             self.careplan = plans.PrepTransitionPlan(self.patient_config)
-        elif self.stage.stage_num == 5:
+        elif self.stage.stage_num == 5 \
+            and self.patient_config['age'] >= 75 \
+            and (self.patient_config['hypertension'] or self.patient_config['t2d']):
+            self.careplan = plans.PalliativeCarePlan(self.patient_config)
+        else:
             self.careplan = plans.SmartDialysisPlan(self.patient_config)
             
     def describe_plan_components(self):
