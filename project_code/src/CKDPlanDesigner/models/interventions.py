@@ -140,7 +140,7 @@ class Type2D(MTM):
                  est_savings: float=ix_config['savings'].get('t2d', 1)):
         super().__init__(est_savings)
         self.desc = 'T2D Management'
-        self.desc_long = ix_config['long_desc'].get('t2d')
+        self.desc_long = ix_config['desc_long'].get('t2d')
 
 ##### Vascular Access
 class VascularAccess(Intervention):

@@ -69,12 +69,6 @@ class EarlyDelayPlan(CareManagementPlan):
 
         self.consolidate_components()
 
-    def consolidate_components(self):
-        self.all_components = self.physio_components + \
-                              self.demo_components +  \
-                              self.behavior_components
-
-
 class PrepTransitionPlan(CareManagementPlan):
     def __init__(self, patient_config):
         super().__init__(patient_config)
@@ -82,13 +76,16 @@ class PrepTransitionPlan(CareManagementPlan):
         self.plan_name = 'Plan: Prep Transition'
         if self.patient_config.get('eGFR') <= 20 :
             self.physio_components.append(ix.VascularAccess())
-            self.physio_components.append(ix.Peritoneal())
-            self.physio_components.append(ix.Hemodialysis())
+            self.physio_components.append(ix.Peritoneal()) # either this or hemo
+            self.physio_components.append(ix.Hemodialysis()) # either this or peri
         
         educate_content = ix_config['desc_long']['educate_engage']['transition_plan']
         self.behavior_components.append(ix.EducationEngagement(desc_long=educate_content))
+
         nephro_content = ix_config['desc_long']['nephro_engage']['transition_plan']
         self.behavior_components.append(ix.NephroEngagement(desc_long=nephro_content))
+
+        self.consolidate_components()
         
 class SmartDialysisPlan(CareManagementPlan):
     def __init__(self, patient_config):
