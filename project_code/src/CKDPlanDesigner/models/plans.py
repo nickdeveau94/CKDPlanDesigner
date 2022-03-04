@@ -91,3 +91,8 @@ class SmartDialysisPlan(CareManagementPlan):
     def __init__(self, patient_config):
         super().__init__(patient_config)
         self.plan_name = 'Plan: Smart Dialysis'
+
+class PalliativeCarePlan(CareManagementPlan):
+    def __init__(self, patient_config):
+        super().__init__(patient_config)
+        self.plan_name = 'Plan: Palliative Care'
