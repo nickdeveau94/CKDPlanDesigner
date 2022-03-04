@@ -13,5 +13,7 @@ desc_long:
   educate_engage: 
     delay_plan: 'Discuss diet and exercise. Also emphasize that we can halt progress of CKD at this stage.'
     transition_plan: 'Talk to patient about at-home PD or HD'
+    smart_dialysis_plan: 'Discuss desicion wrt. palliaive care vs. dialysis, emphasizing there is little evidence for outcomes benefit with dialysis at this stage.'
   nephro_engage:
     transition_plan: 'Goal is to Goal is to get graft or fistula + home dialysis'
+    smart_dialysis_plan: 'Discuss desicion wrt. palliaive care vs. dialysis, emphasizing there is little evidence for outcomes benefit with dialysis at this stage.'

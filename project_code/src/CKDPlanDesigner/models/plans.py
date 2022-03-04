@@ -92,6 +92,13 @@ class SmartDialysisPlan(CareManagementPlan):
         super().__init__(patient_config)
         self.plan_name = 'Plan: Smart Dialysis'
 
+        self.physio_components.append(ix.Dialysis())
+        educate_content = ix_config['desc_long']['educate_engage']['smart_dialysis_plan']
+        self.behavior_components.append(ix.EducationEngagement(desc_long=educate_content))
+
+        nephro_content = ix_config['desc_long']['nephro_engage']['smart_dialysis_plan']
+        self.behavior_components.append(ix.NephroEngagement(desc_long=nephro_content))
+
 class PalliativeCarePlan(CareManagementPlan):
     def __init__(self, patient_config):
         super().__init__(patient_config)
