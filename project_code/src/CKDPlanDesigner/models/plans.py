@@ -11,7 +11,18 @@ ix_config = yaml.load(ix_config_yaml, Loader=yaml.FullLoader)
 
 #### CAREPLANS ####
 class CareManagementPlan(object):
+    """
+    Base care management plan object. Interventions are categorized as either
+    physiological, demographic or behavioral and are automatically added to the
+    plan object based off of specific dimensions of a patient record.
+
+    """
     def __init__(self, patient_config: dict):
+        """
+        Args:
+            patient_config [dict] : dictonary containing information necessary
+            for intervention selection.
+        """
 
     # def __init__(self, patient_config: dict):
         
@@ -64,6 +75,7 @@ class EarlyDelayPlan(CareManagementPlan):
         if self.patient_config.get('bmi'):
             self.behavior_components.append(ix.DietaryProgram())
 
+            # pulls in user-configurable content contained within ix_config.yaml
             educate_content = ix_config['desc_long']['educate_engage']['delay_plan']
             self.behavior_components.append(ix.EducationEngagement(desc_long=educate_content))
 
