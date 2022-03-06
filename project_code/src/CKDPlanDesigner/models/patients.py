@@ -1,6 +1,9 @@
 from CKDPlanDesigner.models import stages, plans
 
 class Patient(object):
+    """
+    Patient
+    """
     def __init__(self, **patient_config):
 
         self.eGFR = patient_config.get('eGFR')
