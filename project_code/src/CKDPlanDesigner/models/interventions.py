@@ -11,6 +11,20 @@ ix_config = yaml.load(ix_config_yaml, Loader=yaml.FullLoader)
 
 #### PLAN COMPONENTS ####
 class Intervention(object):
+    """
+    Base class for an intervention. 
+
+    Args:
+        est_savings [float] : estimated savings for an intervention at the 
+            population level. This feature is not fully implemented yet because
+            of the difficulty of aggregatating the cost savings of often 
+            confounding interventions.
+
+        freq [str] : frequency at which the intervention is delivered
+
+        desc_long [str] : optional description that is pulled in from
+            ix_config.yaml 
+    """
     def __init__(self,
                  est_savings: float=1,
                  freq='weekly'):
