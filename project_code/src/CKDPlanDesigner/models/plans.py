@@ -38,6 +38,10 @@ class CareManagementPlan(object):
         self.savings = 1
 
     def consolidate_components(self):
+        """
+        Combines all interventions into a complete and unified set of 
+        interventions.
+        """
         self.all_components = []
         self.all_components = self.physio_components + \
                               self.demo_components +  \
